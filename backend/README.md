@@ -56,15 +56,15 @@ Setting the `FLASK_APP` variable to `flaskr` directs flask to use the `flaskr` d
 
 One note before you delve into your tasks: for each endpoint you are expected to define the endpoint and response data. The frontend will be a plentiful resource because it is set up to expect certain endpoints and response data formats already. You should feel free to specify endpoints in your own way; if you do so, make sure to update the frontend or you will get some unexpected behavior. 
 
-- [] Use Flask-CORS to enable cross-domain requests and set response headers. 
-- [] Create an endpoint to handle GET requests for questions, including pagination (every 10 questions). This endpoint should return a list of questions, number of total questions, current category, categories. 
-- [] Create an endpoint to handle GET requests for all available categories. 
-- [] Create an endpoint to DELETE question using a question ID. 
-- [] Create an endpoint to POST a new question, which will require the question and answer text, category, and difficulty score. 
-- [] Create a POST endpoint to get questions based on category. 
-- [] Create a POST endpoint to get questions based on a search term. It should return any questions for whom the search term is a substring of the question. 
-- [] Create a POST endpoint to get questions to play the quiz. This endpoint should take category and previous question parameters and return a random questions within the given category, if provided, and that is not one of the previous questions. 
-- [] Create error handlers for all expected errors including 400, 404, 422 and 500. 
+- [ ] Use Flask-CORS to enable cross-domain requests and set response headers. 
+- [ ] Create an endpoint to handle GET requests for questions, including pagination (every 10 questions). This endpoint should return a list of questions, number of total questions, current category, categories. 
+- [ ] Create an endpoint to handle GET requests for all available categories. 
+- [ ] Create an endpoint to DELETE question using a question ID. 
+- [ ] Create an endpoint to POST a new question, which will require the question and answer text, category, and difficulty score. 
+- [ ] Create a POST endpoint to get questions based on category. 
+- [ ] Create a POST endpoint to get questions based on a search term. It should return any questions for whom the search term is a substring of the question. 
+- [ ] Create a POST endpoint to get questions to play the quiz. This endpoint should take category and previous question parameters and return a random questions within the given category, if provided, and that is not one of the previous questions. 
+- [ ] Create error handlers for all expected errors including 400, 404, 422 and 500. 
 
 REVIEW_COMMENT
 ```
