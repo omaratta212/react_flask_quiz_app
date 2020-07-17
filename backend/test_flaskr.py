@@ -19,7 +19,8 @@ class TriviaTestCase(unittest.TestCase):
         self.db_host = "127.0.0.1"
         self.db_port = "5432"
         self.db_name = "trivia"
-        self.database_path = "postgresql://{}:{}@{}:{}/{}".format(self.db_user, self.db_user_password, self.db_host, self.db_port, self.db_name)
+        self.database_path = "postgresql://{}:{}@{}:{}/{}".format(self.db_user, self.db_user_password, self.db_host,
+                                                                  self.db_port, self.db_name)
         setup_db(self.app, self.database_path)
 
         # binds the app to the current context
@@ -33,6 +34,10 @@ class TriviaTestCase(unittest.TestCase):
         """Executed after reach test"""
         pass
 
+    '''
+    Categories endpoint
+    '''
+
     def test_get_categories(self):
         res = self.client().get('/categories')
         data = json.loads(res.data)
@@ -43,6 +48,7 @@ class TriviaTestCase(unittest.TestCase):
     #     res = self.client().get('/questions')
     #     data = json.loads(res.data)
     #     self.assertEqual(res.status_code, 200)
+
 
 # Make the tests conveniently executable
 if __name__ == "__main__":

@@ -19,6 +19,7 @@ class QuestionView extends Component {
 
   componentDidMount() {
     this.getQuestions();
+    fetch('http://127.0.0.1:5000/categories').then((res)=> res.json()).then((res)=>console.dir(res))
   }
 
   getQuestions = () => {
