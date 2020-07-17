@@ -35,19 +35,51 @@ class TriviaTestCase(unittest.TestCase):
         pass
 
     '''
-    Categories endpoint
+     Category tests
     '''
 
+    #  Makes sure I get categories
+    #  ----------------------------------------------------------------
     def test_get_categories(self):
         res = self.client().get('/categories')
         data = json.loads(res.data)
+
         self.assertEqual(res.status_code, 200)
         self.assertNotEqual(len(data), 0)
 
-    # def test_get_questions_paginated(self):
-    #     res = self.client().get('/questions')
-    #     data = json.loads(res.data)
-    #     self.assertEqual(res.status_code, 200)
+    '''
+     Question tests
+    '''
+    #  Makes sure I get Questions & they are paginated
+    #  ----------------------------------------------------------------
+
+
+
+    #  Makes sure I get Questions based on category & they are paginated
+    #  ----------------------------------------------------------------
+
+
+
+    #  Makes sure I get Questions based on a search term & they are paginated
+    #  ----------------------------------------------------------------
+
+
+
+    #  Makes sure I get Game Question provided category and previous question
+    #  ----------------------------------------------------------------
+
+
+
+    #  Makes sure I can create question
+    #  ----------------------------------------------------------------
+
+
+
+    #  Makes sure I can delete question using a question ID
+    #  ----------------------------------------------------------------
+
+
+
 
 
 # Make the tests conveniently executable

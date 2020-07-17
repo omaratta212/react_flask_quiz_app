@@ -23,14 +23,18 @@ def create_app(test_config=None):
         response.headers.add('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE, OPTIONS')
         return response
 
+    #  GET Categories
+    #  ----------------------------------------------------------------
     @app.route('/categories')
     def get_categories():
         data = Category.query.all()
         data = [category.format() for category in data]
         return jsonify({
-            "s": data
+            "data": data
         })
 
+    #  GET Questions paginated
+    #  ----------------------------------------------------------------
     '''
     @TODO: 
     Create an endpoint to handle GET requests for questions, 
@@ -44,6 +48,8 @@ def create_app(test_config=None):
     Clicking on the page numbers should update the questions. 
     '''
 
+    #  DELETE Questions
+    #  ----------------------------------------------------------------
     '''
     @TODO: 
     Create an endpoint to DELETE question using a question ID. 
@@ -52,6 +58,8 @@ def create_app(test_config=None):
     This removal will persist in the database and when you refresh the page. 
     '''
 
+    #  POST Questions
+    #  ----------------------------------------------------------------
     '''
     @TODO: 
     Create an endpoint to POST a new question, 
@@ -63,6 +71,8 @@ def create_app(test_config=None):
     of the questions list in the "List" tab.  
     '''
 
+    #  POST Questions search term
+    #  ----------------------------------------------------------------
     '''
     @TODO: 
     Create a POST endpoint to get questions based on a search term. 
@@ -74,6 +84,8 @@ def create_app(test_config=None):
     Try using the word "title" to start. 
     '''
 
+    #  GET Questions based on category
+    #  ----------------------------------------------------------------
     '''
     @TODO: 
     Create a GET endpoint to get questions based on category. 
@@ -83,6 +95,8 @@ def create_app(test_config=None):
     category to be shown. 
     '''
 
+    #  GET Questions to play
+    #  ----------------------------------------------------------------
     '''
     @TODO: 
     Create a POST endpoint to get questions to play the quiz. 
@@ -95,10 +109,28 @@ def create_app(test_config=None):
     and shown whether they were correct or not. 
     '''
 
+    #  400 Error handler
+    #  ----------------------------------------------------------------
     '''
-    @TODO: 
-    Create error handlers for all expected errors 
-    including 404 and 422. 
+    @TODO: 400. 
+    '''
+
+    #  404 Error handler
+    #  ----------------------------------------------------------------
+    '''
+    @TODO: 404. 
+    '''
+
+    #  404 Error handler
+    #  ----------------------------------------------------------------
+    '''
+    @TODO: 422. 
+    '''
+
+    #  500 Error handler
+    #  ----------------------------------------------------------------
+    '''
+    @TODO: 500. 
     '''
 
     return app
