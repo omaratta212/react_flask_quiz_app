@@ -50,6 +50,7 @@ class TriviaTestCase(unittest.TestCase):
 
     '''
      Question tests
+     @ToDo: Make sure tests covers error too
     '''
     #  Makes sure I get Questions & they are paginated
     #  ----------------------------------------------------------------
@@ -115,7 +116,11 @@ class TriviaTestCase(unittest.TestCase):
     #  Makes sure I can delete question using a question ID
     #  ----------------------------------------------------------------
     def test_delete_question(self):
-        return
+        res = self.client().delete('/questions/1')
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 200)
+        self.assertNotEqual(data['success'], True)
 
 
 

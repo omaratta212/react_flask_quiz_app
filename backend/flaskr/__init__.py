@@ -22,6 +22,7 @@ def create_app(test_config=None):
     '''
     @Done: Use the after_request decorator to set Access-Control-Allow
     '''
+
     @app.after_request
     def after_request_(response):
         response.headers.add('Access-Control-Allow-Headers', 'Content-Type, Authorization')
@@ -33,6 +34,7 @@ def create_app(test_config=None):
     Create an endpoint to handle GET requests 
     for all available categories.
     '''
+
     @app.route('/categories')
     def get_categories():
         categories = {}
@@ -58,6 +60,7 @@ def create_app(test_config=None):
     ten questions per page and pagination at the bottom of the screen for three pages.
     Clicking on the page numbers should update the questions. 
     '''
+
     @app.route('/questions')
     def get_questions():
         # Get page from request if available
@@ -75,7 +78,6 @@ def create_app(test_config=None):
         for category in categories_data:
             categories[category.id] = category.type
 
-
         # Return the json to client
         return jsonify({
             "total_questions": pagination.total,
@@ -83,7 +85,6 @@ def create_app(test_config=None):
             "categories": categories,
             "current_category": categories_data[0].id,
         })
-
 
     #  DELETE Questions
     #  ----------------------------------------------------------------
@@ -94,6 +95,20 @@ def create_app(test_config=None):
     TEST: When you click the trash icon next to a question, the question will be removed.
     This removal will persist in the database and when you refresh the page. 
     '''
+
+    @app.route('/questions/<question_id>', methods=['DELETE'])
+    def delete_question(question_id):
+        success = False
+        question = Question.query.get_or_404(question_id)
+        try:
+            question.delete()
+            success = True
+        except Exception as e:
+            print(e)
+
+        return jsonify({
+            "success": success
+        })
 
     #  POST Questions
     #  ----------------------------------------------------------------
@@ -121,7 +136,6 @@ def create_app(test_config=None):
     Try using the word "title" to start. 
     '''
 
-
     '''
     @Done: GET Questions based on category
     Create a GET endpoint to get questions based on category. 
@@ -130,6 +144,7 @@ def create_app(test_config=None):
     categories in the left column will cause only questions of that 
     category to be shown. 
     '''
+
     @app.route('/categories/<int:category_id>/questions')
     def get_category_questions(category_id):
         questions = Question.query.filter(Question.category == category_id).all()
@@ -140,7 +155,6 @@ def create_app(test_config=None):
             'total_questions': len(questions),
             'current_category': category_id
         })
-
 
     #  GET Questions to play
     #  ----------------------------------------------------------------
