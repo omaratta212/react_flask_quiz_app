@@ -46,6 +46,7 @@ class TriviaTestCase(unittest.TestCase):
 
         self.assertEqual(res.status_code, 200)
         self.assertNotEqual(len(data), 0)
+        self.assertNotEqual(data['categories'], None)
 
     '''
      Question tests
@@ -61,19 +62,23 @@ class TriviaTestCase(unittest.TestCase):
         self.assertLessEqual(len(data['questions']), QUESTIONS_PER_PAGE)
         self.assertNotEqual(data['total_questions'], None)
         self.assertNotEqual(data['total_questions'], 0)
+        self.assertNotEqual(data['categories'], None)
+        self.assertNotEqual(len(data['categories']), 0)
+        self.assertNotEqual(data['current_category'], None)
 
 
     #  Makes sure I get Questions based on category & they are paginated
     #  ----------------------------------------------------------------
     def test_get_paginated_questions_for_category(self):
-        res = self.client().get('/questions?category=1')
+        res = self.client().get('/categories/1/questions')
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 200)
         self.assertNotEqual(len(data['questions']), 0)
         self.assertLessEqual(len(data['questions']), QUESTIONS_PER_PAGE)
         self.assertNotEqual(data['total_questions'], None)
-        self.assertNotEqual(data['category'], None)
+        self.assertNotEqual(data['total_questions'], 0)
+        self.assertNotEqual(data['current_category'], None)
         self.assertNotEqual(data['total_questions'], 0)
 
 
