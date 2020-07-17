@@ -3,7 +3,7 @@ import unittest
 import json
 from flask_sqlalchemy import SQLAlchemy
 
-from flaskr import create_app
+from flaskr import create_app, QUESTIONS_PER_PAGE
 from models import setup_db, Question, Category
 
 
@@ -52,33 +52,65 @@ class TriviaTestCase(unittest.TestCase):
     '''
     #  Makes sure I get Questions & they are paginated
     #  ----------------------------------------------------------------
+    def test_get_paginated_questions(self):
+        res = self.client().get('/questions')
+        data = json.loads(res.data)
 
+        self.assertEqual(res.status_code, 200)
+        self.assertNotEqual(len(data['questions']), 0)
+        self.assertLessEqual(len(data['questions']), QUESTIONS_PER_PAGE)
+        self.assertNotEqual(data['total_questions'], None)
+        self.assertNotEqual(data['total_questions'], 0)
 
 
     #  Makes sure I get Questions based on category & they are paginated
     #  ----------------------------------------------------------------
+    def test_get_paginated_questions_for_category(self):
+        res = self.client().get('/questions?category=1')
+        data = json.loads(res.data)
 
+        self.assertEqual(res.status_code, 200)
+        self.assertNotEqual(len(data['questions']), 0)
+        self.assertLessEqual(len(data['questions']), QUESTIONS_PER_PAGE)
+        self.assertNotEqual(data['total_questions'], None)
+        self.assertNotEqual(data['category'], None)
+        self.assertNotEqual(data['total_questions'], 0)
 
 
     #  Makes sure I get Questions based on a search term & they are paginated
     #  ----------------------------------------------------------------
+    def test_get_paginated_questions_from_search(self):
+        res = self.client().get('/questions?search=something')
+        data = json.loads(res.data)
 
+        self.assertEqual(res.status_code, 200)
+        self.assertLessEqual(len(data['questions']), QUESTIONS_PER_PAGE)
+        self.assertNotEqual(data['total_questions'], 0)
 
 
     #  Makes sure I get Game Question provided category and previous question
     #  ----------------------------------------------------------------
+    def test_get_question_from_category_and_previous(self):
+        previous = self.client().get('/questions/1')
+        previous_question = json.loads(previous.data)
+        res = self.client().get('/questions?category=something&previous=1')
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 200)
+        self.assertNotEqual(data, None)
+        self.assertNotEqual(data['question']['id'], previous_question['id'])
 
 
 
     #  Makes sure I can create question
     #  ----------------------------------------------------------------
-
-
+    def test_post_question(self):
+        return
 
     #  Makes sure I can delete question using a question ID
     #  ----------------------------------------------------------------
-
-
+    def test_delete_question(self):
+        return
 
 
 
