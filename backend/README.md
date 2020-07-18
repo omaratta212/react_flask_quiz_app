@@ -62,8 +62,8 @@ One note before you delve into your tasks: for each endpoint you are expected to
 - [x] Create an endpoint to DELETE question using a question ID. 
 - [x] Create an endpoint to POST a new question, which will require the question and answer text, category, and difficulty score. 
 - [x] Create a POST endpoint to get questions based on category. 
-- [ ] Create a POST endpoint to get questions based on a search term. It should return any questions for whom the search term is a substring of the question. 
-- [ ] Create a POST endpoint to get questions to play the quiz. This endpoint should take category and previous question parameters and return a random questions within the given category, if provided, and that is not one of the previous questions. 
+- [x] Create a POST endpoint to get questions based on a search term. It should return any questions for whom the search term is a substring of the question. 
+- [x] Create a POST endpoint to get questions to play the quiz. This endpoint should take category and previous question parameters and return a random questions within the given category, if provided, and that is not one of the previous questions. 
 - [ ] Create error handlers for all expected errors including 400, 404, 422 and 500. 
 
 REVIEW_COMMENT

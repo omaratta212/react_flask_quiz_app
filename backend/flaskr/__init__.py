@@ -1,6 +1,7 @@
 import os
 from flask import Flask, request, abort, jsonify
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.sql.expression import func
 from flask_cors import CORS
 import random
 
@@ -201,6 +202,34 @@ def create_app(test_config=None):
     one question at a time is displayed, the user is allowed to answer
     and shown whether they were correct or not. 
     '''
+
+    @app.route('/quizzes', methods=['POST'])
+    def get_quiz_questions():
+        # Get the required parameters
+        previous_questions = request.json.get('previous_questions', list)
+        quiz_category = request.json.get('quiz_category', dict)
+        quiz_category = int(quiz_category['id'])
+
+        # Building the query filters
+        filters = [Question.id not in previous_questions]
+
+        # If the category id 0 then it's 'ALL' and we don't need this filter
+        if quiz_category != 0:
+            filters.append(Question.category == quiz_category)
+
+        # Get the query results with all the filters
+        question_query = Question.query \
+            .filter(*filters) \
+            .order_by(func.random()) \
+            .first()
+
+        # Format the result
+        question = question_query.format()
+
+        return jsonify({
+            "success": True,
+            "question": question,
+        })
 
     #  400 Error handler
     #  ----------------------------------------------------------------

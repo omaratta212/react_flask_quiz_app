@@ -110,14 +110,18 @@ class TriviaTestCase(unittest.TestCase):
     #  Makes sure I get Game Question provided category and previous question
     #  ----------------------------------------------------------------
     def test_get_question_from_category_and_previous(self):
-        previous = self.client().get('/questions/1')
-        previous_question = json.loads(previous.data)
-        res = self.client().get('/questions?category=something&previous=1')
+        body = {
+            "previous_questions": [10, 17],
+            "quiz_category": {"type": "Geography", "id": 3}
+        }
+
+        res = self.client().post('/quizzes', data=json.dumps(body), content_type='application/json')
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 200)
         self.assertNotEqual(data, None)
-        self.assertNotEqual(data['question']['id'], previous_question['id'])
+        self.assertEqual(data['question']['category'], body['quiz_category']['id'])  # Same category
+        self.assertNotIn(data['question']['id'], body['previous_questions'])  # Not the same question
 
     #  Makes sure I can create question
     #  ----------------------------------------------------------------
@@ -135,8 +139,8 @@ class TriviaTestCase(unittest.TestCase):
         self.assertEqual(store_question['difficulty'], question['difficulty'])
         self.assertEqual(store_question['category'], question['category'])
 
-     # Makes sure I can delete question using a question ID
-     # ----------------------------------------------------------------
+    # Makes sure I can delete question using a question ID
+    # ----------------------------------------------------------------
     def test_delete_question(self):
         # Insert new post and get it's id to delete later
         post = self.post_test_question()
@@ -150,10 +154,8 @@ class TriviaTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data['success'], True)
 
-
-
-     # Makes sure I can search for questions
-     # ----------------------------------------------------------------
+    # Makes sure I can search for questions
+    # ----------------------------------------------------------------
     def test_search_question(self):
         # Insert new post and get it's body to search for latter later
         post = self.post_test_question()
@@ -161,15 +163,14 @@ class TriviaTestCase(unittest.TestCase):
         store_response_json = json.loads(store_response.data)
         store_question = store_response_json['question']
 
-        body = {"searchTerm": store_question['question'] }
+        body = {"searchTerm": store_question['question']}
 
-        # Fire delete request with the stored id
-        res = self.client().post('/questions/search', data = json.dumps(body), content_type='application/json')
+        # Fire search request with the stored question body
+        res = self.client().post('/questions/search', data=json.dumps(body), content_type='application/json')
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data['success'], True)
         self.assertEqual(data['questions'][0]['question'], store_question['question'])
-
 
 
 # Make the tests conveniently executable
