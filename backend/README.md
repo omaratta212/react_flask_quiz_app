@@ -143,7 +143,7 @@ Category Resource
   * **Code:** 200 <br />
     
     <details>
-      <summary>**Body:** </summary>
+      <summary>Body (Click to expand)</summary>
       
     ```json
      {
