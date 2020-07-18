@@ -152,6 +152,26 @@ class TriviaTestCase(unittest.TestCase):
 
 
 
+     # Makes sure I can search for questions
+     # ----------------------------------------------------------------
+    def test_search_question(self):
+        # Insert new post and get it's body to search for latter later
+        post = self.post_test_question()
+        store_response = post['response']
+        store_response_json = json.loads(store_response.data)
+        store_question = store_response_json['question']
+
+        body = {"searchTerm": store_question['question'] }
+
+        # Fire delete request with the stored id
+        res = self.client().post('/questions/search', data = json.dumps(body), content_type='application/json')
+        data = json.loads(res.data)
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+        self.assertEqual(data['questions'][0]['question'], store_question['question'])
+
+
+
 # Make the tests conveniently executable
 if __name__ == "__main__":
     unittest.main()
