@@ -66,7 +66,7 @@ def create_app(test_config=None):
         page = request.args.get('page', 1, int)
 
         # Using SqlAlchemy query pagination to avoid getting all the records from the db
-        pagination = Question.query.paginate(page, QUESTIONS_PER_PAGE, error_out=True)
+        pagination = Question.query.paginate(page, QUESTIONS_PER_PAGE, error_out=False)
 
         # Format the questions
         questions = [question.format() for question in pagination.items]
@@ -166,7 +166,7 @@ def create_app(test_config=None):
             "success": True,
             "questions": questions,
             "total_questions": len(questions),
-            "current_category": questions[0]['category'],
+            "current_category": questions[0]['category'] if len(questions)>1 else None,
         })
 
     '''
@@ -189,10 +189,8 @@ def create_app(test_config=None):
             'current_category': category_id
         })
 
-    #  GET Questions to play
-    #  ----------------------------------------------------------------
     '''
-    @TODO: 
+    @Done: GET Questions to play
     Create a POST endpoint to get questions to play the quiz. 
     This endpoint should take category and previous question parameters 
     and return a random questions within the given category, 
@@ -231,28 +229,56 @@ def create_app(test_config=None):
             "question": question,
         })
 
-    #  400 Error handler
-    #  ----------------------------------------------------------------
     '''
-    @TODO: 400. 
+    @Done: 400 Error handler. 
     '''
 
-    #  404 Error handler
-    #  ----------------------------------------------------------------
+    @app.errorhandler(400)
+    def bad_request_error(error):
+        return jsonify({
+            "success": False,
+            "error": 400,
+            "message": "Baaaad request!",
+            "details": error.message
+        }), 400
+
     '''
-    @TODO: 404. 
+    @Done: 404 Error handler. 
     '''
 
-    #  404 Error handler
-    #  ----------------------------------------------------------------
+    @app.errorhandler(404)
+    def not_found_error(error):
+        return jsonify({
+            "success": False,
+            "error": 404,
+            "message": "Not found",
+            "details": str(error)
+        }), 404
+
     '''
-    @TODO: 422. 
+    @Done: 422 Error handler. 
     '''
 
-    #  500 Error handler
-    #  ----------------------------------------------------------------
+    @app.errorhandler(422)
+    def unprocessable_entity_error(error):
+        return jsonify({
+            "success": False,
+            "error": 422,
+            "message": "Unprocessable Entity",
+            "details": str(error)
+        }), 422
+
     '''
-    @TODO: 500. 
+    @Done: 500 Error handler. 
     '''
+
+    @app.errorhandler(500)
+    def internal_server_error(error):
+        return jsonify({
+            "success": False,
+            "error": 500,
+            "message": "Internal Server Error",
+            "details": str(error)
+        }), 500
 
     return app

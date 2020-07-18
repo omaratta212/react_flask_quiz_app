@@ -65,7 +65,6 @@ class TriviaTestCase(unittest.TestCase):
 
     '''
      Question tests
-     @ToDo: Make sure tests covers error too
     '''
 
     #  Makes sure I get Questions & they are paginated
