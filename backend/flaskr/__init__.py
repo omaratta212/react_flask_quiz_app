@@ -46,10 +46,8 @@ def create_app(test_config=None):
             "categories": categories
         })
 
-    #  GET Questions paginated
-    #  ----------------------------------------------------------------
     '''
-    @Done: 
+    @Done: GET Questions paginated
     Create an endpoint to handle GET requests for questions, 
     including pagination (every 10 questions). 
     This endpoint should return a list of questions, 
@@ -86,10 +84,8 @@ def create_app(test_config=None):
             "current_category": categories_data[0].id,
         })
 
-    #  DELETE Questions
-    #  ----------------------------------------------------------------
     '''
-    @TODO: 
+    @Done: DELETE Questions
     Create an endpoint to DELETE question using a question ID. 
   
     TEST: When you click the trash icon next to a question, the question will be removed.
@@ -110,10 +106,8 @@ def create_app(test_config=None):
             "success": success
         })
 
-    #  POST Questions
-    #  ----------------------------------------------------------------
     '''
-    @TODO: 
+    @Done: POST Questions
     Create an endpoint to POST a new question, 
     which will require the question and answer text, 
     category, and difficulty score.
@@ -122,6 +116,29 @@ def create_app(test_config=None):
     the form will clear and the question will appear at the end of the last page
     of the questions list in the "List" tab.  
     '''
+
+    @app.route('/questions', methods=['POST'])
+    def create_question():
+        success = False
+
+        question = Question(
+            request.json.get('question'),
+            request.json.get('answer'),
+            request.json.get('category'),
+            request.json.get('difficulty'),
+        )
+
+        try:
+            question.insert()
+            success = True
+        except Exception as e:
+            print(e)
+
+        return jsonify({
+            "success": success,
+            "question": question.format() if success else None
+        })
+
 
     #  POST Questions search term
     #  ----------------------------------------------------------------

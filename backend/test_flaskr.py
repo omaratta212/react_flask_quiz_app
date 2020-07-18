@@ -18,7 +18,7 @@ class TriviaTestCase(unittest.TestCase):
         self.db_user_password = "passwordforatta"
         self.db_host = "127.0.0.1"
         self.db_port = "5432"
-        self.db_name = "trivia"
+        self.db_name = "trivia_test"
         self.database_path = "postgresql://{}:{}@{}:{}/{}".format(self.db_user, self.db_user_password, self.db_host,
                                                                   self.db_port, self.db_name)
         setup_db(self.app, self.database_path)
@@ -33,6 +33,21 @@ class TriviaTestCase(unittest.TestCase):
     def tearDown(self):
         """Executed after reach test"""
         pass
+
+    # Function that creates test question
+    def post_test_question(self):
+        question = {
+            "question": 'Test question',
+            "answer": 'Test answer',
+            "difficulty": 1,
+            "category": 1
+        }
+        question_json = json.dumps(question)
+        store_response = self.client().post('/questions', data=question_json, content_type='application/json')
+        return {
+            "question": question,
+            "response": store_response
+        }
 
     '''
      Category tests
@@ -52,6 +67,7 @@ class TriviaTestCase(unittest.TestCase):
      Question tests
      @ToDo: Make sure tests covers error too
     '''
+
     #  Makes sure I get Questions & they are paginated
     #  ----------------------------------------------------------------
     def test_get_paginated_questions(self):
@@ -67,7 +83,6 @@ class TriviaTestCase(unittest.TestCase):
         self.assertNotEqual(len(data['categories']), 0)
         self.assertNotEqual(data['current_category'], None)
 
-
     #  Makes sure I get Questions based on category & they are paginated
     #  ----------------------------------------------------------------
     def test_get_paginated_questions_for_category(self):
@@ -75,13 +90,12 @@ class TriviaTestCase(unittest.TestCase):
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 200)
+        self.assertNotEqual(data['questions'], None)
         self.assertNotEqual(len(data['questions']), 0)
-        self.assertLessEqual(len(data['questions']), QUESTIONS_PER_PAGE)
         self.assertNotEqual(data['total_questions'], None)
         self.assertNotEqual(data['total_questions'], 0)
         self.assertNotEqual(data['current_category'], None)
         self.assertNotEqual(data['total_questions'], 0)
-
 
     #  Makes sure I get Questions based on a search term & they are paginated
     #  ----------------------------------------------------------------
@@ -92,7 +106,6 @@ class TriviaTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 200)
         self.assertLessEqual(len(data['questions']), QUESTIONS_PER_PAGE)
         self.assertNotEqual(data['total_questions'], 0)
-
 
     #  Makes sure I get Game Question provided category and previous question
     #  ----------------------------------------------------------------
@@ -106,21 +119,36 @@ class TriviaTestCase(unittest.TestCase):
         self.assertNotEqual(data, None)
         self.assertNotEqual(data['question']['id'], previous_question['id'])
 
-
-
     #  Makes sure I can create question
     #  ----------------------------------------------------------------
     def test_post_question(self):
-        return
+        post = self.post_test_question()
+        question = post['question']
+        store_response = post['response']
+        store_response_json = json.loads(store_response.data)
+        store_question = store_response_json['question']
 
-    #  Makes sure I can delete question using a question ID
-    #  ----------------------------------------------------------------
+        self.assertEqual(store_response.status_code, 200)
+        self.assertNotEqual(store_question['id'], None)
+        self.assertEqual(store_question['question'], question['question'])
+        self.assertEqual(store_question['answer'], question['answer'])
+        self.assertEqual(store_question['difficulty'], question['difficulty'])
+        self.assertEqual(store_question['category'], question['category'])
+
+     # Makes sure I can delete question using a question ID
+     # ----------------------------------------------------------------
     def test_delete_question(self):
-        res = self.client().delete('/questions/1')
-        data = json.loads(res.data)
+        # Insert new post and get it's id to delete later
+        post = self.post_test_question()
+        store_response = post['response']
+        store_response_json = json.loads(store_response.data)
+        store_question = store_response_json['question']
 
+        # Fire delete request with the stored id
+        res = self.client().delete('/questions/' + str(store_question['id']))
+        data = json.loads(res.data)
         self.assertEqual(res.status_code, 200)
-        self.assertNotEqual(data['success'], True)
+        self.assertEqual(data['success'], True)
 
 
 
