@@ -84,7 +84,7 @@ class TriviaTestCase(unittest.TestCase):
 
     #  Makes sure I get Questions based on category & they are paginated
     #  ----------------------------------------------------------------
-    def test_get_paginated_questions_for_category(self):
+    def test_get_questions_for_category(self):
         res = self.client().get('/categories/1/questions')
         data = json.loads(res.data)
 
@@ -94,16 +94,6 @@ class TriviaTestCase(unittest.TestCase):
         self.assertNotEqual(data['total_questions'], None)
         self.assertNotEqual(data['total_questions'], 0)
         self.assertNotEqual(data['current_category'], None)
-        self.assertNotEqual(data['total_questions'], 0)
-
-    #  Makes sure I get Questions based on a search term & they are paginated
-    #  ----------------------------------------------------------------
-    def test_get_paginated_questions_from_search(self):
-        res = self.client().get('/questions?search=something')
-        data = json.loads(res.data)
-
-        self.assertEqual(res.status_code, 200)
-        self.assertLessEqual(len(data['questions']), QUESTIONS_PER_PAGE)
         self.assertNotEqual(data['total_questions'], 0)
 
     #  Makes sure I get Game Question provided category and previous question

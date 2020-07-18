@@ -66,7 +66,7 @@ def create_app(test_config=None):
         page = request.args.get('page', 1, int)
 
         # Using SqlAlchemy query pagination to avoid getting all the records from the db
-        pagination = Question.query.paginate(page, QUESTIONS_PER_PAGE, error_out=False)
+        pagination = Question.query.paginate(page, QUESTIONS_PER_PAGE, error_out=True)
 
         # Format the questions
         questions = [question.format() for question in pagination.items]
