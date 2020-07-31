@@ -1,5 +1,4 @@
 import {useEffect, useState} from "preact/hooks";
-import { Link } from 'preact-router/match';
 
 const Home = () => {
     const [categories, setCategories] = useState([])
@@ -34,7 +33,7 @@ const Home = () => {
                             className="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-32 w-32" />
                         : categories.map((category) => (
                             <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
-                                <Link href={`/play/${category}`} className="h-full flex items-center border-gray-800 border p-4 rounded-lg">
+                                <div className="h-full flex items-center border-gray-800 border p-4 rounded-lg">
                                     <img alt="team"
                                          className="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
                                          src="https://dummyimage.com/104x94" />
@@ -42,7 +41,7 @@ const Home = () => {
                                         <h2 className="text-white title-font font-medium">{category}</h2>
                                         <p className="text-gray-600">System</p>
                                     </div>
-                                </Link>
+                                </div>
                             </div>
                         ))}
                 </div>

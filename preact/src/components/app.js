@@ -8,6 +8,7 @@ import Footer from './footer';
 import Home from '../routes/home';
 import Add from '../routes/add';
 import Play from '../routes/play';
+import Quiz from '../routes/quiz';
 
 export default class App extends Component {
 
@@ -27,6 +28,7 @@ export default class App extends Component {
 					<Home path="/" />
 					<Add path="/add" />
 					<Play path="/play" />
+					<Quiz path="/play/:category" />
 				</Router>
 				<Footer />
 			</div>

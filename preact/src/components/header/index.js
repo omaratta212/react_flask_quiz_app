@@ -9,10 +9,10 @@ const Header = () => (
 			<Link activeClassName="text-orange-400" className="mr-5 hover:text-white" href="/add">Add</Link>
 			<Link activeClassName="text-orange-400" className="mr-5 hover:text-white" href="/play">Play</Link>
 		</nav>
-		<a className="flex order-first lg:order-none lg:w-1/5 title-font font-medium items-center text-white lg:items-center lg:justify-center mb-4 md:mb-0">
+		<Link href="/" className="flex order-first lg:order-none lg:w-1/5 title-font font-medium items-center text-white lg:items-center lg:justify-center mb-4 md:mb-0">
 			<Zap className="text-orange-400" />
 			<span className="ml-3 text-xl xl:block lg:hidden text-orange-400">Trivia questions!</span>
-		</a>
+		</Link>
 		<div className="lg:w-2/5 inline-flex lg:justify-end ml-5 lg:ml-0">
 			<Link
 				href="/play"

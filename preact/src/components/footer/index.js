@@ -13,10 +13,10 @@ const Header = () => (
 				   rel="noopener noreferrer">@omaratta212</a>
 			</p>
 			<span className="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
-      <a className="text-gray-600" href="https://www.linkedin.com/in/omar-atta/">
+      <a className="text-gray-600" href="https://www.linkedin.com/in/omar-atta/" target="_blank" rel="noreferrer">
         <Linkedin />
       </a>
-      <a className="ml-3 text-gray-600" href="https://twitter.com/omaratta212">
+      <a className="ml-3 text-gray-600" href="https://twitter.com/omaratta212" target="_blank" rel="noreferrer">
         <Twitter />
       </a>
     </span>
