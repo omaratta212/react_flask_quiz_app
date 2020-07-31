@@ -1,7 +1,9 @@
 module.exports = {
   purge: [],
   theme: {
-    extend: {},
+    extend:{
+      primary: '#FFC107',
+    }
   },
   variants: {},
   plugins: [],
