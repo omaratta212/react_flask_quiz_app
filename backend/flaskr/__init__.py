@@ -209,7 +209,7 @@ def create_app(test_config=None):
         quiz_category = int(quiz_category['id'])
 
         # Building the query filters
-        filters = [Question.id not in previous_questions]
+        filters = [Question.id.notin_(previous_questions)]
 
         # If the category id 0 then it's 'ALL' and we don't need this filter
         if quiz_category != 0:
@@ -222,7 +222,9 @@ def create_app(test_config=None):
             .first()
 
         # Format the result
-        question = question_query.format()
+        question = None
+        if question_query:
+            question = question_query.format()
 
         return jsonify({
             "success": True,

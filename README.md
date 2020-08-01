@@ -32,10 +32,10 @@ Completing this trivia app will give you the ability to structure plan, implemen
 
 ## Frontend Todo
 This tasks isn't part of Udacity project. I just liked to add them for better performance and experience
-- [ ] Replace react with preact
-- [ ] Remove jQuery and depend on the native browser fetch
-- [ ] Replace project styles with tailwind
-- [ ] Improve UI elements across the app
+- [x] Replace react with preact
+- [x] Remove jQuery and depend on the native browser fetch
+- [x] Replace project styles with tailwind
+- [x] Improve UI elements across the app
 - [ ] Add question rating input & UI
 - [ ] Create users leaderboard
 - [ ] Add capability to create new categories.

@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'preact/hooks'
 import Question from "../../components/question";
 import Loader from "../../components/loader";
+import Search from "../../components/search";
 import CategoryItem from "../../components/CategoryItem";
 
 const Home = () => {
@@ -77,7 +78,9 @@ const Home = () => {
     return (
         <section className="text-gray-500 bg-gray-900 body-font mb-auto">
             <div className="container px-5 py-24 mx-auto flex flex-wrap">
-                <div className="flex flex-col relative pb-20 md:w-1/4 mx-auto h-screen sticky top-0">
+                <div className="flex flex-col relative pb-20 md:w-1/4 mx-auto h-screen sticky top-0 pt-5">
+                    <h4 className="block font-bold text-gray-400">Search Questions</h4>
+                    <Search />
                     <h4 className="block font-bold text-gray-400">Questions Categories</h4>
                     <nav className="flex-grow block md:block md:overflow-y-auto hidden mr-5">
                         {isLoading ?
@@ -108,7 +111,7 @@ const Home = () => {
                     </nav>
                 </div>
 
-                <div className="md:w-3/4">
+                <div className="md:w-3/4 pt-5">
                     <h4 className="block font-bold text-gray-400 ml-16">Showing {questions.length} questions
                         of {totalQuestions}</h4>
 
