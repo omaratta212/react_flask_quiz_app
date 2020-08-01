@@ -1,7 +1,14 @@
+import {useState} from "preact/hooks";
 import { HelpCircle} from 'preact-feather';
 
 const Question = props => {
 	const { index,  question, answer } = props;
+
+	const [visibleAnswer, setVisibleAnswer] = useState(false)
+
+	const flipVisibility = ()=> {
+		setVisibleAnswer(!visibleAnswer)
+	}
 
 	return (
 		<div className="flex relative pt-10 pb-20 sm:items-center mx-auto">
@@ -22,7 +29,16 @@ const Question = props => {
 					<h2 className="font-medium title-font text-white mb-1 text-xl">
 						{question}
 					</h2>
-					<p className="leading-relaxed">{answer}</p>
+					<div className="flex justify-between">
+						<p className={`leading-relaxed ${visibleAnswer ? 'text-orange-400' : ''}`}>{visibleAnswer ? answer : 'Hidden answer'}</p>
+						<button
+							onClick={flipVisibility}
+							className="bg-transparent hover:bg-orange-400 text-grey-100 font-semibold hover:text-black py-2 px-4 border border-orange-400 hover:border-transparent rounded focus:outline-none"
+						>
+							{ visibleAnswer ? 'Hide answer' : 'Show answer'}
+						</button>
+					</div>
+
 				</div>
 			</div>
 		</div>
