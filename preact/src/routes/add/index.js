@@ -1,4 +1,4 @@
-const Home = () => (
+const Add = () => (
     <section className="text-gray-500 bg-gray-900 body-font mb-auto">
         <div className="container px-5 py-24 mx-auto flex flex-col items-center">
             <div className="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0 mb-10">
@@ -47,4 +47,4 @@ const Home = () => (
 
 );
 
-export default Home;
+export default Add;

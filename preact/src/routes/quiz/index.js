@@ -1,6 +1,6 @@
 import {useEffect, useState} from "preact/hooks";
 
-const Home = () => {
+const Quiz = () => {
     const [categories, setCategories] = useState([])
     const [isLoading, setIsLoading] = useState(true);
 
@@ -51,4 +51,4 @@ const Home = () => {
     )
 }
 
-export default Home
+export default Quiz

@@ -1,7 +1,7 @@
 import {useEffect, useState} from "preact/hooks";
 import { Link } from 'preact-router/match';
 
-const Home = () => {
+const Play = () => {
     const [categories, setCategories] = useState([])
     const [isLoading, setIsLoading] = useState(true);
 
@@ -52,4 +52,4 @@ const Home = () => {
     )
 }
 
-export default Home
+export default Play

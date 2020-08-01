@@ -5,9 +5,9 @@ const Header = () => (
 <header className="text-gray-500 bg-gray-900 body-font border-b border-gray-800">
 	<div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
 		<nav className="flex lg:w-2/5 flex-wrap items-center text-base md:ml-auto">
-			<Link activeClassName="text-orange-400" className="mr-5 hover:text-white" href="/">Home</Link>
-			<Link activeClassName="text-orange-400" className="mr-5 hover:text-white" href="/add">Add</Link>
-			<Link activeClassName="text-orange-400" className="mr-5 hover:text-white" href="/play">Play</Link>
+			<Link activeClassName="text-orange-400" className="mr-5 hover:text-orange-400" href="/">Home</Link>
+			<Link activeClassName="text-orange-400" className="mr-5 hover:text-orange-400" href="/add">Add</Link>
+			<Link activeClassName="text-orange-400" className="mr-5 hover:text-orange-400" href="/play">Play</Link>
 		</nav>
 		<Link href="/" className="flex order-first lg:order-none lg:w-1/5 title-font font-medium items-center text-white lg:items-center lg:justify-center mb-4 md:mb-0">
 			<Zap className="text-orange-400" />
