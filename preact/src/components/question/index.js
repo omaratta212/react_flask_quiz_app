@@ -21,10 +21,10 @@ const Question = props => {
 			</div>
 			<div
 				className="flex-grow md:pl-8 pl-6 flex sm:items-center items-start flex-col sm:flex-row">
-				<div
-					className="flex-shrink-0 w-24 h-24 bg-gray-800 text-orange-400 rounded-full inline-flex items-center justify-center">
-					<HelpCircle size={32} />
-				</div>
+				<img
+					className="flex-shrink-0 w-24 h-24 bg-gray-800 text-orange-400 rounded-full inline-flex items-center justify-center"
+					src={`https://picsum.photos/200/300?q=${ index }`}
+				 />
 				<div className="flex-grow sm:pl-6 mt-6 sm:mt-0">
 					<h2 className="font-medium title-font text-white mb-1 text-xl">
 						{question}
