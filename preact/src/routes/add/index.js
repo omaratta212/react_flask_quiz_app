@@ -8,15 +8,18 @@ const Add = () => {
     const [formFailed, setFormFailed] = useState(false)
     const [categories, setCategories] = useState([])
 
-    useEffect(async ()=>{
-        try{
-            let res = await fetch('http://127.0.0.1:5000/categories')
-            res = await res.json()
-            setCategories(res.categories)
-        }catch (e) {
-            console.error('Error fetching from the API', e)
-        }
-    }, [])
+        useEffect(()=>{
+            const fetchData = async ()=>{
+                try{
+                    let res = await fetch('http://127.0.0.1:5000/categories')
+                    res = await res.json()
+                    setCategories(res.categories)
+                }catch (e) {
+                    console.error('Error fetching from the API')
+                }
+            }
+            fetchData()
+        }, [])
 
 
     const onSubmit = async (formData)=> {

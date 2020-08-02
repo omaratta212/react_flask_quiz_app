@@ -1,5 +1,4 @@
 import {useState} from "preact/hooks";
-import { HelpCircle} from 'preact-feather';
 
 const Question = props => {
 	const { index,  question, answer } = props;

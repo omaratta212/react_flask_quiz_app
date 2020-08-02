@@ -5,15 +5,18 @@ const Play = () => {
     const [categories, setCategories] = useState([])
     const [isLoading, setIsLoading] = useState(true);
 
-    useEffect(async ()=>{
-        try{
-            let res = await fetch('http://127.0.0.1:5000/categories')
-            res = await res.json()
-            setCategories(res.categories)
-            setIsLoading(false)
-        }catch (e) {
-            console.error('Error fetching from the API')
+    useEffect(()=>{
+        const fetchData = async ()=>{
+            try{
+                let res = await fetch('http://127.0.0.1:5000/categories')
+                res = await res.json()
+                setCategories(res.categories)
+                setIsLoading(false)
+            }catch (e) {
+                console.error('Error fetching from the API')
+            }
         }
+        fetchData()
     }, [])
 
     return (

@@ -39,7 +39,7 @@ const Quiz = ({category}) => {
     }
 
     const evaluateAnswer = () => {
-        const formatGuess = answerValue.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "").toLowerCase()
+        const formatGuess = answerValue.replace(/[.,/#!$%^&*;:{}=\-_`~()]/g, "").toLowerCase()
         const answerArray = currentQuestion.answer.toLowerCase().split(' ');
         if (currentQuestion.id) {
             setPreviousQuestions(previousQuestions.concat(currentQuestion.id))

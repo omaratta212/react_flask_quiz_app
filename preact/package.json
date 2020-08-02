@@ -7,7 +7,7 @@
     "build": "preact build",
     "serve": "sirv build --cors --single",
     "dev": "preact watch",
-    "lint": "eslint src",
+    "lint": "eslint --fix src",
     "test": "jest"
   },
   "eslintConfig": {
