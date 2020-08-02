@@ -24,10 +24,6 @@ const Play = () => {
                         game!</h1>
                     <h2 className="sm:text-l text-l font-medium title-font mb-4 text-white">Pick your favorite
                         category</h2>
-                    <p className="lg:w-2/3 mx-auto leading-relaxed text-base">Whatever cardigan tote bag tumblr hexagon
-                        brooklyn asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't
-                        heard
-                        of them.</p>
                 </div>
                 <div className="flex flex-wrap -m-2 justify-center">
                     {isLoading ? <div
@@ -39,8 +35,7 @@ const Play = () => {
                                          className="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
                                          src={`https://picsum.photos/200?q=${ index }`} />
                                     <div className="flex-grow">
-                                        <h2 className="title-font font-medium">{categories[id]}</h2>
-                                        <p className="text-gray-600">System</p>
+                                        <h2 className="title-font font-medium text-white">{categories[id]}</h2>
                                     </div>
                                 </Link>
                             </div>

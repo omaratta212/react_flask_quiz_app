@@ -37,6 +37,29 @@ const Home = () => {
         }
     }
 
+    const submitSearch = async (searchTerm) => {
+        setIsLoading(true)
+        const options = {
+            method: 'POST',
+            body: JSON.stringify({searchTerm}),
+            headers: {'Content-Type': 'application/json'}
+        }
+
+        try {
+            let res = await fetch('http://127.0.0.1:5000/questions/search', options)
+            res = await res.json()
+
+
+            setQuestions(res.questions)
+            setTotalQuestions(res.total_questions)
+            setSelectedCategory(res.current_category)
+            setIsLoading(false)
+
+        } catch (e) {
+            console.error('Error fetching from the API')
+        }
+    }
+
 
     useEffect(fetchQuestions, [])
 
@@ -80,7 +103,7 @@ const Home = () => {
             <div className="container px-5 py-24 mx-auto flex flex-wrap">
                 <div className="flex flex-col relative pb-20 md:w-1/4 mx-auto h-screen sticky top-0 pt-5">
                     <h4 className="block font-bold text-gray-400">Search Questions</h4>
-                    <Search />
+                    <Search submitSearch={submitSearch} />
                     <h4 className="block font-bold text-gray-400">Questions Categories</h4>
                     <nav className="flex-grow block md:block md:overflow-y-auto hidden mr-5">
                         {isLoading ?
