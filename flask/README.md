@@ -22,6 +22,8 @@ This documentation is aimed to make you familiar with the work done on this API,
    * [API Resources](#api-resources)
         * [Category Resource](#category-resource)
             * [Get categories](#get-categories)
+        * [Question Resource](#question-resource)
+            * [Get questions](#get-questions)
    * [Testing The API](#testing)
 
 
@@ -37,7 +39,7 @@ This documentation is aimed to make you familiar with the work done on this API,
 Follow instructions to install the latest version of python for your platform in the [python docs](https://docs.python.org/3/using/unix.html#getting-and-installing-the-latest-version-of-python)
 
 <a name="virtual-environment"></a>
-#### Virtual Enviornment
+#### Virtual Environment
 
 We recommend working within a virtual environment whenever using Python for projects. This keeps your dependencies for each project separate and organaized. Instructions for setting up a virual enviornment for your platform can be found in the [python docs](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/)
 
@@ -76,6 +78,7 @@ From within the `backend` directory first ensure you are working using your crea
 To run the server, execute:
 
 ```bash
+cd flask
 export FLASK_APP=flaskr
 export FLASK_ENV=development
 flask run
@@ -110,7 +113,7 @@ Setting the `FLASK_APP` variable to `flaskr` directs flask to use the `flaskr` d
 <a name="api-resources"></a>
 # API Resources
 
-<a name="category-resource"></a>
+<a name="question-resource"></a>
 
 Category Resource
 -------
@@ -170,6 +173,141 @@ Category Resource
 
 
 <a name="testing"></a>
+
+Question Resource
+-------
+
+<a name="get-question"></a>
+### Get questions
+
+* **Description:**
+    Used to get all questions paginated.
+    
+* **Return:**
+  A list of questions paginated (10 per page), a list of categories, current category and total questions count.
+
+* **URL:**
+  `/questions`
+
+* **Method:**
+  `GET`
+  
+*  **URL Params:**
+
+   **Optional:**
+   `page=<int>`
+
+* **Data Params:**
+  None
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    
+    <details>
+      <summary>Body (Click to expand)</summary>
+      
+    ```json
+    {
+      "categories": {
+        "1": "Science",
+        "2": "Art",
+        "3": "Geography",
+        "4": "History",
+        "5": "Entertainment",
+        "6": "Sports"
+      },
+      "current_category": 1,
+      "questions": [
+        {
+          "answer": "Maya Angelou",
+          "category": 4,
+          "difficulty": 2,
+          "id": 5,
+          "question": "Whose autobiography is entitled 'I Know Why the Caged Bird Sings'?"
+        },
+        {
+          "answer": "Muhammad Ali",
+          "category": 4,
+          "difficulty": 1,
+          "id": 9,
+          "question": "What boxer's original name is Cassius Clay?"
+        },
+        {
+          "answer": "Tom Cruise",
+          "category": 5,
+          "difficulty": 4,
+          "id": 4,
+          "question": "What actor did author Anne Rice first denounce, then praise in the role of her beloved Lestat?"
+        },
+        {
+          "answer": "Edward Scissorhands",
+          "category": 5,
+          "difficulty": 3,
+          "id": 6,
+          "question": "What was the title of the 1990 fantasy directed by Tim Burton about a young man with multi-bladed appendages?"
+        },
+        {
+          "answer": "Brazil",
+          "category": 6,
+          "difficulty": 3,
+          "id": 10,
+          "question": "Which is the only team to play in every soccer World Cup tournament?"
+        },
+        {
+          "answer": "Uruguay",
+          "category": 6,
+          "difficulty": 4,
+          "id": 11,
+          "question": "Which country won the first ever soccer World Cup in 1930?"
+        },
+        {
+          "answer": "George Washington Carver",
+          "category": 4,
+          "difficulty": 2,
+          "id": 12,
+          "question": "Who invented Peanut Butter?"
+        },
+        {
+          "answer": "Lake Victoria",
+          "category": 3,
+          "difficulty": 2,
+          "id": 13,
+          "question": "What is the largest lake in Africa?"
+        },
+        {
+          "answer": "Agra",
+          "category": 3,
+          "difficulty": 2,
+          "id": 15,
+          "question": "The Taj Mahal is located in which Indian city?"
+        },
+        {
+          "answer": "Escher",
+          "category": 2,
+          "difficulty": 1,
+          "id": 16,
+          "question": "Which Dutch graphic artist–initials M C was a creator of optical illusions?"
+        }
+      ],
+      "total_questions": 35
+    }
+    ```
+
+    </details>
+    
+ 
+
+* **Sample Call:**
+
+  ```javascript
+    fetch("http://127.0.0.1:5000/questions")
+  ```
+
+
+<a name="testing"></a>
+
+
 ## Testing The API
 To run the tests, run
 ```
