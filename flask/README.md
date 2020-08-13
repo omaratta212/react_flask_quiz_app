@@ -27,6 +27,7 @@ This documentation is aimed to make you familiar with the work done on this API,
             * [Delete questions](#delete-question)
             * [create question](#create-question)
             * [Search questions](#search-questions)
+            * [Get Questions based on category](#get-category-questions)
    * [Testing The API](#testing)
 
 
@@ -446,8 +447,6 @@ Question Resource
 
 
 
-<a name="testing"></a>
-
 <a name="search-questions"></a>
 ### Search Questions
 
@@ -512,6 +511,113 @@ Question Resource
       "body": JSON.stringify({searchTerm: "Dutch"}),
       "method": "POST"
     })
+  ```
+
+
+
+
+
+
+
+
+
+<a name="testing"></a>
+
+<a name="get-category-questions"></a>
+### Get Questions based on category
+
+* **Description:**
+    Used to get specific category questions (not-paginated).
+    
+* **Return:**
+    Returns a dict with the following values:
+    1. 'questions' a list of the category questions.
+    3. 'total_questions' The count of the total category questions.
+    4. 'current_category' The category id.
+
+* **URL:**
+  `/categories/<int:category_id>/questions`
+
+* **Method:**
+  `GET`
+  
+*  **URL Params:**
+  None
+
+* **Data Params:**
+  None
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    
+    <details>
+      <summary>Body (Click to expand)</summary>
+      
+    ```json
+    {
+      "current_category": 2,
+      "questions": [
+        {
+          "answer": "Escher",
+          "category": 2,
+          "difficulty": 1,
+          "id": 16,
+          "question": "Which Dutch graphic artist–initials M C was a creator of optical illusions?"
+        },
+        {
+          "answer": "Mona Lisa",
+          "category": 2,
+          "difficulty": 3,
+          "id": 17,
+          "question": "La Giaconda is better known as what?"
+        },
+        {
+          "answer": "One",
+          "category": 2,
+          "difficulty": 4,
+          "id": 18,
+          "question": "How many paintings did Van Gogh sell in his lifetime?"
+        },
+        {
+          "answer": "Jackson Pollock",
+          "category": 2,
+          "difficulty": 2,
+          "id": 19,
+          "question": "Which American artist was a pioneer of Abstract Expressionism, and a leading exponent of action painting?"
+        },
+        {
+          "answer": "sal;jf",
+          "category": 2,
+          "difficulty": 2,
+          "id": 31,
+          "question": "aljfdh"
+        },
+        {
+          "answer": "jklahdflk",
+          "category": 2,
+          "difficulty": 2,
+          "id": 32,
+          "question": "asfdajh"
+        },
+        {
+          "answer": "jlkhadk",
+          "category": 2,
+          "difficulty": 2,
+          "id": 37,
+          "question": "aslkdhfk"
+        }
+      ],
+      "total_questions": 7
+    }
+    ```
+    </details>
+    
+
+* **Sample Call:**
+
+  ```javascript
+    fetch("http://127.0.0.1:5000/categories/2/questions")
   ```
 
 
