@@ -25,6 +25,7 @@ This documentation is aimed to make you familiar with the work done on this API,
         * [Question Resource](#question-resource)
             * [Get questions](#get-questions)
             * [Delete questions](#delete-question)
+            * [create question](#create-question)
    * [Testing The API](#testing)
 
 
@@ -306,7 +307,6 @@ Question Resource
   ```
 
 
-<a name="testing"></a>
 
 <a name="delete-question"></a>
 ### DELETE Questions
@@ -374,6 +374,80 @@ Question Resource
 <a name="testing"></a>
 
 
+<a name="create-question"></a>
+### Create Questions
+
+* **Description:**
+    Used to add new question to the DB.
+    
+* **Return:**
+    Returns a dict with the value 'success' equals `ture` on success and `false` on failure and 'question' holding the added question in case of success.
+
+* **URL:**
+  `/questions`
+
+* **Method:**
+  `POST`
+  
+*  **URL Params:**
+
+   **Optional:**
+  None
+
+* **Data Params:**
+   **Required:**
+    1. `question`: The question text.
+    2. `answer`: The answer text.
+    2. `answer`: The answer text.
+    3. `category`: The question category id.
+    4. `category`: The question difficulty level.
+
+* **Success Response:**
+
+  * **Code:** 20    0 <br />
+    
+    <details>
+      <summary>Body (Click to expand)</summary>
+      
+    ```json
+    {
+      "question": {
+        "answer": "sdf",
+        "category": 4,
+        "difficulty": 2,
+        "id": 42,
+        "question": "sdf"
+      },
+      "success": true
+    }
+    ```
+
+    </details>
+    
+
+* **Sample Call:**
+
+  ```javascript
+    fetch("http://127.0.0.1:5000/questions", {
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": JSON.stringify({question: "text q", answer: "test a", category: "4", difficulty: "2"}),
+      "method": "POST",
+    })
+  ```
+
+
+<a name="testing"></a>
+
+
+
+
+
+
+
+
+<a name="testing"></a>
 ## Testing The API
 To run the tests, run
 ```
