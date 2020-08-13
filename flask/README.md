@@ -28,6 +28,7 @@ This documentation is aimed to make you familiar with the work done on this API,
             * [create question](#create-question)
             * [Search questions](#search-questions)
             * [Get Questions based on category](#get-category-questions)
+            * [Get Questions to play](#get-play-questions)
    * [Testing The API](#testing)
 
 
@@ -618,6 +619,65 @@ Question Resource
 
   ```javascript
     fetch("http://127.0.0.1:5000/categories/2/questions")
+  ```
+
+<a name="get-play-questions"></a>
+### Get Questions to play
+
+* **Description:**
+    Takes a category and previous questions array 
+    
+* **Return:**
+    Returns a dict with the following values:
+    1. 'success' Boolean to indicated success.
+    2. 'question' The next question.
+
+* **URL:**
+  `/quizzes`
+
+* **Method:**
+  `POST`
+  
+*  **URL Params:**
+  None
+
+* **Data Params:**
+   **Required:**
+    1. `previous_questions`: Array of the previous question to avoid sending them back.
+    2. `quiz_category`: The category to send questions from.
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    
+    <details>
+      <summary>Body (Click to expand)</summary>
+      
+    ```json
+    {
+      "question": {
+        "answer": "sal;jf",
+        "category": 2,
+        "difficulty": 2,
+        "id": 31,
+        "question": "aljfdh"
+      },
+      "success": true
+    }
+    ```
+    </details>
+    
+
+* **Sample Call:**
+
+  ```javascript
+    fetch("http://127.0.0.1:5000/quizzes", {
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": JSON.stringify({previous_questions: [1, 2, 3], quiz_category: {id: 2}}),
+      "method": "POST"
+    })
   ```
 
 
