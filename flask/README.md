@@ -26,6 +26,7 @@ This documentation is aimed to make you familiar with the work done on this API,
             * [Get questions](#get-questions)
             * [Delete questions](#delete-question)
             * [create question](#create-question)
+            * [Search questions](#search-questions)
    * [Testing The API](#testing)
 
 
@@ -375,7 +376,7 @@ Question Resource
 
 
 <a name="create-question"></a>
-### Create Questions
+### Create Question
 
 * **Description:**
     Used to add new question to the DB.
@@ -404,7 +405,7 @@ Question Resource
 
 * **Success Response:**
 
-  * **Code:** 20    0 <br />
+  * **Code:** 200 <br />
     
     <details>
       <summary>Body (Click to expand)</summary>
@@ -438,7 +439,81 @@ Question Resource
   ```
 
 
+
+
+
+
+
+
+
 <a name="testing"></a>
+
+<a name="search-questions"></a>
+### Search Questions
+
+* **Description:**
+    Used to add search for a question in the DB.
+    
+* **Return:**
+    Returns a dict with the following values:
+    1. 'success' equals `ture` on success and `false` on failure.
+    2. 'questions' a list of the filtered question.
+    3. 'total_questions' the count of the total matched questions.
+    4. 'current_category' the first question category.
+
+* **URL:**
+  `/questions/search`
+
+* **Method:**
+  `POST`
+  
+*  **URL Params:**
+
+   **Optional:**
+  None
+
+* **Data Params:**
+   **Required:**
+    1. `searchTerm`: String holding the search term.
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    
+    <details>
+      <summary>Body (Click to expand)</summary>
+      
+    ```json
+    {
+      "current_category": 1,
+      "questions": [
+        {
+          "answer": "Escher",
+          "category": 1,
+          "difficulty": 1,
+          "id": 33,
+          "question": "Which Dutch graphic artist–initials M C was a creator of optical illusions?"
+        }
+      ],
+      "success": true,
+      "total_questions": 1
+    }
+    ```
+    </details>
+    
+
+* **Sample Call:**
+
+  ```javascript
+    fetch("http://127.0.0.1:5000/search", {
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": JSON.stringify({searchTerm: "Dutch"}),
+      "method": "POST"
+    })
+  ```
+
 
 
 
