@@ -24,6 +24,7 @@ This documentation is aimed to make you familiar with the work done on this API,
             * [Get categories](#get-categories)
         * [Question Resource](#question-resource)
             * [Get questions](#get-questions)
+            * [Delete questions](#delete-question)
    * [Testing The API](#testing)
 
 
@@ -302,6 +303,71 @@ Question Resource
 
   ```javascript
     fetch("http://127.0.0.1:5000/questions")
+  ```
+
+
+<a name="testing"></a>
+
+<a name="delete-question"></a>
+### DELETE Questions
+
+* **Description:**
+    Used to delete a question by it's id.
+    
+* **Return:**
+    Returns a dict with the value 'success' equals `ture` on success and `false` on failure.
+
+* **URL:**
+  `/questions/<question_id>`
+
+* **Method:**
+  `DELETE`
+  
+*  **URL Params:**
+
+   **Optional:**
+  None
+
+* **Data Params:**
+  None
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    
+    <details>
+      <summary>Body (Click to expand)</summary>
+      
+    ```json
+    { "success": true }
+    ```
+
+    </details>
+    
+* **Failure Response:**
+
+  * **Code:** 404 <br />
+    
+    <details>
+      <summary>Body (Click to expand)</summary>
+      
+    ```json
+    {
+      "details": "404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.",
+      "error": 404,
+      "message": "Not found",
+      "success": false
+    }
+    ```
+
+    </details>
+    
+ 
+
+* **Sample Call:**
+
+  ```javascript
+    fetch('http://127.0.0.1:5000/questions/30', {method: 'DELETE'})
   ```
 
 
