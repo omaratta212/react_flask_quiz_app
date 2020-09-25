@@ -13,7 +13,7 @@ const Home = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     const fetchQuestions = async (id) => {
-        let url = id ? `http://127.0.0.1:5000/categories/${id}/questions` : 'http://127.0.0.1:5000/questions'
+        let url = id ? `https://vast-fortress-26509.herokuapp.com/categories/${id}/questions` : 'https://vast-fortress-26509.herokuapp.com/questions'
         url += `?page=${currentPage}`
 
         try {
@@ -46,7 +46,7 @@ const Home = () => {
         }
 
         try {
-            let res = await fetch('http://127.0.0.1:5000/questions/search', options)
+            let res = await fetch('https://vast-fortress-26509.herokuapp.com/questions/search', options)
             res = await res.json()
 
 

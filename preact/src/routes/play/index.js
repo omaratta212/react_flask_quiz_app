@@ -8,7 +8,7 @@ const Play = () => {
     useEffect(()=>{
         const fetchData = async ()=>{
             try{
-                let res = await fetch('http://127.0.0.1:5000/categories')
+                let res = await fetch('https://vast-fortress-26509.herokuapp.com/categories')
                 res = await res.json()
                 setCategories(res.categories)
                 setIsLoading(false)

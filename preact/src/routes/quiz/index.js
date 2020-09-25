@@ -25,9 +25,9 @@ const Quiz = ({category}) => {
             }),
             headers: {'Content-Type': 'application/json'}
         }
-
+        
         try {
-            let res = await fetch('http://127.0.0.1:5000/quizzes', options)
+            let res = await fetch('https://vast-fortress-26509.herokuapp.com/quizzes', options)
             res = await res.json()
 
             setCurrentQuestion(res.question)
